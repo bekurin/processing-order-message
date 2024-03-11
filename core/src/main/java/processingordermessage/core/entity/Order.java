@@ -6,12 +6,19 @@ import jakarta.persistence.Entity;
 @Entity
 public class Order extends BaseEntity {
 
-    @Column(nullable = false, length = 64)
+    @Column(nullable = false, length = 63)
     String orderNo;
 
-    public Order(Long id, String orderNo) {
-        this.id = id;
+    @Column(nullable = false, length = 127)
+    String address;
+
+    @Column(nullable = false, length = 127)
+    String orderItem;
+
+    public Order(String orderNo, String address, String orderItem) {
         this.orderNo = orderNo;
+        this.address = address;
+        this.orderItem = orderItem;
     }
 
     protected Order() {
@@ -19,5 +26,13 @@ public class Order extends BaseEntity {
 
     public String getOrderNo() {
         return orderNo;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getOrderItem() {
+        return orderItem;
     }
 }

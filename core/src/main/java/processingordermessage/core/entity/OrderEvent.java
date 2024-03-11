@@ -28,4 +28,9 @@ public class OrderEvent extends BaseEntity {
     public OrderEventType getOrderEventType() {
         return orderEventType;
     }
+
+    public OrderEvent updateOrderEventType(OrderEventType orderEventType) {
+        this.orderEventType = orderEventType;
+        return this;
+    }
 }
