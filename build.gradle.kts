@@ -2,6 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 val mysqlConnectorJVersion: String = "8.3.0"
+val springCloudVersion: String = "2023.0.0"
 
 plugins {
     id("org.springframework.boot") version "3.2.3"
@@ -36,6 +37,12 @@ subprojects {
     apply(plugin = "kotlin")
     apply(plugin = "kotlin-spring")
     apply(plugin = "kotlin-jpa")
+
+    dependencyManagement {
+        imports {
+            mavenBom("org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}")
+        }
+    }
 
     dependencies {
         implementation("org.springframework.boot:spring-boot-starter-web")

@@ -21,8 +21,8 @@ class OrderService(
     @Transactional
     fun createOrder(orderNo: String, address: String, orderItem: String): OrderEvent {
         val order = Order(orderNo, address, orderItem)
+        val orderEvent = OrderEvent(orderNo, PAYMENT_ATTEMPT)
         orderRepository.save(order)
-        val orderEvent = OrderEvent(order, PAYMENT_ATTEMPT)
         return orderEventRepository.save(orderEvent)
     }
 

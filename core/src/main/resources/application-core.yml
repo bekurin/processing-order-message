@@ -1,7 +1,23 @@
 spring:
   datasource:
     hikari:
-      jdbc-url: jdbc:mysql://localhost:3306/order
-      username: root
-      password: 1234
+      jdbc-url: jdbc:mysql://localhost:3306/processing_order_message
+      username: mysql
+      password: mysql
       driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: create
+    show-sql: true
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: localhost:9093
+      bindings:
+        debeziumEventConsumer-in-0:
+          destination: order-event-changes.public.order_event
+          group: 1
+          content-type: application/json

@@ -8,5 +8,5 @@ import java.util.Optional;
 @Repository
 public interface OrderEventRepository extends JpaRepository<OrderEvent, Long> {
 
-    public Optional<OrderEvent> findByOrderNo(String orderNo);
+    Optional<OrderEvent> findByOrderNo(String orderNo);
 }

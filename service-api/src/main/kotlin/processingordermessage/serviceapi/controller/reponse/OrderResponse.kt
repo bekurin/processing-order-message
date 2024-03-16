@@ -8,7 +8,7 @@ data class OrderResponse(
     val orderEventType: OrderEventType
 ) {
     constructor(orderEvent: OrderEvent) : this(
-        orderNo = orderEvent.order.orderNo,
+        orderNo = orderEvent.orderNo,
         orderEventType = orderEvent.orderEventType
     )
 }

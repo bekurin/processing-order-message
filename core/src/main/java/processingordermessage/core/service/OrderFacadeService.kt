@@ -5,7 +5,7 @@ import org.springframework.scheduling.annotation.Async
 import org.springframework.stereotype.Service
 import processingordermessage.core.entity.OrderEvent
 import processingordermessage.core.util.SnowflakeIdGenerator
-import java.util.*
+import kotlin.random.Random
 
 @Service
 class OrderFacadeService(
@@ -13,7 +13,7 @@ class OrderFacadeService(
     private val payService: PayService
 ) {
     private val log = LoggerFactory.getLogger(OrderFacadeService::class.java)
-    private val generator = SnowflakeIdGenerator(Random(100).nextLong())
+    private val generator = SnowflakeIdGenerator(Random.nextLong(31))
 
     fun createOrder(address: String, orderItem: String): OrderEvent {
         val orderNo = "A${generator.nextId()}"

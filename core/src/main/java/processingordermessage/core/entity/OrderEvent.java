@@ -1,28 +1,29 @@
 package processingordermessage.core.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
+@Entity(name = "order_event")
 public class OrderEvent extends BaseEntity {
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "orderNo")
-    Order order;
+    @Column(nullable = false, length = 64)
+    String orderNo;
 
     @Column(nullable = false, length = 64)
+    @Enumerated(EnumType.STRING)
     OrderEventType orderEventType;
 
     protected OrderEvent() {
     }
 
-    public OrderEvent(Order order, OrderEventType orderEventType) {
-        this.order = order;
+    public OrderEvent(String orderNo, OrderEventType orderEventType) {
+        this.orderNo = orderNo;
         this.orderEventType = orderEventType;
     }
 
-    public Order getOrder() {
-        return order;
+    public String getOrderNo() {
+        return orderNo;
     }
 
     public OrderEventType getOrderEventType() {
